@@ -52,6 +52,4 @@ trait MyService extends HttpService {
         </form>
       </body>
     </html>
-
-
 }
