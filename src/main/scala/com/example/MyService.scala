@@ -29,8 +29,10 @@ trait MyService extends HttpService {
       }
     } ~
     post {
-      respondWithMediaType( `text/html` ) {
-        complete ( add )
+      formFields( 'todo ) { todo =>
+        respondWithMediaType( `text/html` ) {
+          complete ( add )
+        }
       }
     }
   }
