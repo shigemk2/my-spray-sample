@@ -18,30 +18,40 @@ trait MyService extends HttpService {
     path( "" ) {
       get {
         respondWithMediaType( `text/html` ) {
-          complete {
-            <html>
-            <body>
-            <h1>Say hello to <i>spray-routing</i> on <i>spray-can</i>!</h1>
-            </body>
-            </html>
-          }
+          complete ( index )
         }
       }
     } ~
   path( "add" ) {
     get {
       respondWithMediaType( `text/html` ) {
-        complete {
-          <html>
-            <body>
-              <h1>TODO管理</h1>
-              <ul>
-                <li><a href="/add" title="TODO登録">TODO登録</a></li>
-              </ul>
-            </body>
-          </html>
-        }
+        complete ( add )
       }
     }
   }
+
+  lazy val index =
+    <html>
+      <body>
+        <h1>TODO管理</h1>
+        <ul>
+          <li><a href="/add" title="TODO登録">TODO登録</a></li>
+        </ul>
+      </body>
+    </html>
+
+  lazy val add =
+    <html>
+      <body>
+        <h1>TODO管理</h1>
+        <form name="form1" method="POST" action="add">
+          <div>
+            <span><input type="text" name="todo" value="" style="width:60%;" /></span>
+            <span><input type="submit" name="submit" value="登録" /></span>
+          </div>
+        </form>
+      </body>
+    </html>
+
+
 }
