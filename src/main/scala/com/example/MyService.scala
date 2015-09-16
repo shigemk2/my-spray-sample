@@ -24,17 +24,19 @@ trait MyService extends HttpService {
     } ~
   path( "add" ) {
     get {
-      respondWithMediaType( `text/html` ) {
-        complete ( add( Todos.all ) )
-      }
+      addPage
     } ~
     post {
       formFields( 'todo ) { todo =>
         Todos.add( todo )
-        respondWithMediaType( `text/html` ) {
-          complete ( add( Todos.all ) )
-        }
+        addPage
       }
+    }
+  }
+
+  def addPage: Route = {
+    respondWithMediaType( `text/html` ) {
+      complete ( add( Todos.all ) )
     }
   }
 
