@@ -25,13 +25,14 @@ trait MyService extends HttpService {
   path( "add" ) {
     get {
       respondWithMediaType( `text/html` ) {
-        complete ( add )
+        complete ( add( Todos.all ) )
       }
     } ~
     post {
       formFields( 'todo ) { todo =>
+        Todos.add( todo )
         respondWithMediaType( `text/html` ) {
-          complete ( add )
+          complete ( add( Todos.all ) )
         }
       }
     }
@@ -47,16 +48,21 @@ trait MyService extends HttpService {
       </body>
     </html>
 
-  lazy val add =
+  def add( items: Seq[String] = Seq.empty[String] ) =
     <html>
       <body>
-        <h1>TODO管理</h1>
+        <h2>TODO登録</h2>
         <form name="form1" method="POST" action="add">
           <div>
             <span><input type="text" name="todo" value="" style="width:60%;" /></span>
             <span><input type="submit" name="submit" value="登録" /></span>
           </div>
         </form>
+        <div>
+          <ul>
+            { for { item <- items } yield <li>{item}</li> }
+          </ul>
+        </div>
       </body>
     </html>
 }
