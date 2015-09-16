@@ -27,6 +27,11 @@ trait MyService extends HttpService {
       respondWithMediaType( `text/html` ) {
         complete ( add )
       }
+    } ~
+    post {
+      respondWithMediaType( `text/html` ) {
+        complete ( add )
+      }
     }
   }
 
@@ -52,4 +57,22 @@ trait MyService extends HttpService {
         </form>
       </body>
     </html>
+}
+
+object Todos {
+  private var items: Seq[String] = Seq()
+  def add( item: String ): Unit = synchronized {
+    items = items :+ item
+  }
+
+  def remove( item: String ): Unit = {
+    val ( head, tail ) = items.span( _ != item )
+    synchronized {
+      if ( tail.size == 0 )
+        head
+      else
+        head ++ tail.tail
+    }
+  }
+  def all: Seq[String] = items
 }
