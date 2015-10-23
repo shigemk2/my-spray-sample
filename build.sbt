@@ -22,4 +22,19 @@ libraryDependencies ++= {
   )
 }
 
+// assembly
+// テストのスキップ
+test in assembly := {}
+// メインクラスの明示
+mainClass in assembly := Some("com.example.Boot")
+// どんなjarを作るか
+assemblyJarName in assembly := "my-spray-sample.jar"
+
+// 競合しているものの解消
+packageOptions in assembly ~= { pos =>
+  pos.filterNot { po =>
+    po.isInstanceOf[Package.MainClass]
+  }
+}
+
 Revolver.settings
