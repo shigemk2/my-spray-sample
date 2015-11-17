@@ -1,3 +1,5 @@
+sprayのサンプルです。
+
 ## _spray_ Template Project
 
 This projects provides a starting point for your own _spray-routing_ endeavors.
