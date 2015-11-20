@@ -11,12 +11,12 @@ trait LongTimeService extends HttpService {
     path("longTime") {
       extract(_.responder) { responder =>
         responder ! SetRequestTimeout(30 seconds)
-        slowQuery()
-        complete("complete")
+        complete(slowQuery())
       }
     }
 
-  def slowQuery(): Unit = {
+  def slowQuery(): String = {
     Thread.sleep(50000)
+    "complete"
   }
 }
