@@ -5,11 +5,11 @@ import spray.routing._
 import spray.http._
 import MediaTypes._
 
-class MyServiceActor extends Actor with MyService {
+class MyServiceActor extends Actor with MyService with LongTimeService {
 
   def actorRefFactory = context
 
-  def receive = runRoute(myRoute)
+  def receive = runRoute(myRoute ~ longTimeRoute)
 }
 
 
