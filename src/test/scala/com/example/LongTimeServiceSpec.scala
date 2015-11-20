@@ -12,7 +12,7 @@ class LongTimeServiceSpec extends Specification with Specs2RouteTest with LongTi
   "LongTimeService" should {
 
     "return complete" in {
-      Get("longTime") ~> longTimeRoute ~> check {
+      Get("/longTime") ~> longTimeRoute ~> check {
         status.intValue should be equalTo 200
       }
     }
