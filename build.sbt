@@ -18,13 +18,14 @@ libraryDependencies ++= {
     "com.typesafe.akka"   %%  "akka-actor"    % akkaV,
     "com.typesafe.akka"   %%  "akka-testkit"  % akkaV   % "test",
     "org.specs2"          %%  "specs2-core"   % "2.3.11" % "test",
-    "com.aerospike"       %  "aerospike-client" % "latest.integration"
-    // "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.5" % "test",
-    // "io.gatling"            % "gatling-test-framework"    % "2.1.5" % "test"
+    "com.aerospike"       %  "aerospike-client" % "latest.integration",
+    "io.gatling.highcharts" % "gatling-charts-highcharts" % "2.1.5" % "test",
+    "io.gatling"            % "gatling-test-framework"    % "2.1.5" % "test",
+    "io.gatling"            % "gatling-test-framework"    % "2.1.t" % "test"
   )
 }
 
-// enablePlugins(GatlingPlugin)
+enablePlugins(GatlingPlugin)
 
 // assembly
 // テストのスキップ
