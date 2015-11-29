@@ -7,5 +7,5 @@ class GatlingSimulation extends Simulation {
   val scn = scenario("request").exec(req)
 
   // setUp(scn.inject(ramp(1000 users) over (50 seconds)))
-  setUp(scn.inject(atOnceUsers(1)))
+  setUp(scn.inject(atOnceUsers(10000)))
 }
