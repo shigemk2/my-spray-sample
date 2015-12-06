@@ -22,6 +22,13 @@ trait MyService extends HttpService {
         }
       }
     } ~
+    path( "test" ) {
+      get {
+        respondWithMediaType( `text/html` ) {
+          complete ( "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" )
+        }
+      }
+    } ~
   path( "add" ) {
     get {
       addPage
