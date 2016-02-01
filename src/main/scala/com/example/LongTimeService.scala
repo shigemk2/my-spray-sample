@@ -8,15 +8,16 @@ import scala.concurrent.duration._
 
 trait LongTimeService extends HttpService {
   val longTimeRoute =
-    path("longTime") {
-      extract(_.responder) { responder =>
+    path("longTime") { 
+     extract(_.responder) { responder =>
         responder ! SetRequestTimeout(30 seconds)
-        complete(slowQuery())
+        complete(slowQuery(5000))
       }
     }
 
-  def slowQuery(): String = {
-    Thread.sleep(50000)
+  def slowQuery(n: Int): String = {
+    println(n)
+    Thread.sleep(n)
     "complete"
   }
 }

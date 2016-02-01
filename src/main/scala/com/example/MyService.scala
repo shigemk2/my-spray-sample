@@ -47,6 +47,10 @@ trait MyService extends HttpService {
     }
   }
 
+  def hoge (): Seq[String] = {
+    Seq("apple", "orange").collect { case apple => "got an apple" }
+  }
+
   lazy val index =
     <html>
       <body>
